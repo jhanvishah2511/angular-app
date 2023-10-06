@@ -2,7 +2,8 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 />
-<router-outlet></router-outlet>
 <div *ngIf="loggedIn">
+  <app-header></app-header>
   <app-sidebar></app-sidebar>
 </div>
+<router-outlet></router-outlet>

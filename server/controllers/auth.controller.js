@@ -54,3 +54,14 @@ exports.signin = async(req,res)=>{
         return res.status(500).send({ message: error.message });
     }
 }
+
+exports.signOut = async(req,res)=>{
+    try{
+        const token = '';
+        return res.status(200).send({
+            token, message:"You're Logged Out."
+        });
+    }catch (error) {
+        return res.status(500).send({ message: error.message });
+    }
+}

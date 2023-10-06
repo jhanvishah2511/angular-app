@@ -17,4 +17,8 @@ export class AuthServiceService {
   login(data:any): Observable<any>{
     return this.http.post(COMMON_URL.LOGIN,data);
   }
+
+  logout(){
+    return this.http.get(COMMON_URL.LOGOUT);
+  }
 }

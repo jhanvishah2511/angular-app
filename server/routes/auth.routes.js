@@ -19,4 +19,8 @@ module.exports = function(app) {
     app.post("/login", function(req, res){
       controller.signin(req, res)
     });
+
+    app.get('/logout', function(req,res){
+      controller.signOut(req, res)
+    })
 }
