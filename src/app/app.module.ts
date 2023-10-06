@@ -15,7 +15,15 @@ import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, DashboardComponent, SidebarComponent, HeaderComponent, UserComponent],
+  declarations: [
+    AppComponent,
+    RegisterComponent,
+    LoginComponent,
+    DashboardComponent,
+    SidebarComponent,
+    HeaderComponent,
+    UserComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +31,7 @@ import { UserComponent } from './user/user.component';
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],
