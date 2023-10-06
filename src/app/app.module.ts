@@ -12,9 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
-  declarations: [AppComponent, RegisterComponent, LoginComponent, DashboardComponent, SidebarComponent, HeaderComponent],
+  declarations: [AppComponent, RegisterComponent, LoginComponent, DashboardComponent, SidebarComponent, HeaderComponent, UserComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
