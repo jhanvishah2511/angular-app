@@ -41,7 +41,7 @@
           </td>
           <td>{{ user["email"] }}</td>
           <td>
-            <button class="rounded-full bg-cyan-600 p-2 text-white mr-1">
+            <button class="rounded-full bg-cyan-600 p-2 text-white mr-1" (click)="edit(user['id'])">
               Edit
             </button>
             <button class="rounded-full bg-red-600 p-2 text-white">

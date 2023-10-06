@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -7,7 +8,7 @@ import { UserService } from './user.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  constructor(public service:UserService){}
+  constructor(public service:UserService, public router:Router){}
   userlist!: [];
   ngOnInit() {
     this.userList();
@@ -16,5 +17,11 @@ export class UserComponent {
     this.service.getUser().subscribe((response:any)=>{
       this.userlist = response.data;
     })
+  }
+
+  edit(id:number){
+    if(id){
+      this.router.navigate([`users/edit/${id}`])
+    }
   }
 }
