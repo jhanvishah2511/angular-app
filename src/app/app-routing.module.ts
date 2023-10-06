@@ -16,8 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    pathMatch: 'full',
+    redirectTo: 'users',
+  },
+  {
+    path: 'users',
     canActivate: [AuthGuardService],
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
 ];
 

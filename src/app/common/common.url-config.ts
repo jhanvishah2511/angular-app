@@ -3,5 +3,6 @@ export const SERVER_HOST_URL = environment.SERVER_HOST;
 export const COMMON_URL = {
     REGISTER:`${SERVER_HOST_URL}/register`,
     LOGIN: `${SERVER_HOST_URL}/login`,
-    LOGOUT: `${SERVER_HOST_URL}/logout`
+    LOGOUT: `${SERVER_HOST_URL}/logout`,
+    USER: `${SERVER_HOST_URL}/user`
 }
