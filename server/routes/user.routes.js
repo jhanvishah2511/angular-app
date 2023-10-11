@@ -8,8 +8,16 @@ module.exports = function(app) {
         );
         next();
     });
-
     app.get('/user', function(req,res){
         controller.getUser(req, res)
+    })
+    app.get('/user/:id', function(req,res){
+        controller.getUserById(req, res)
+    })
+    app.post('/user/edit/:id', function(req,res){
+        controller.userEdit(req, res)
+    })
+    app.delete('/user/:id', function(req,res){
+        controller.userDelete(req, res)
     })
 }

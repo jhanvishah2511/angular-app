@@ -4,5 +4,6 @@ export const COMMON_URL = {
     REGISTER:`${SERVER_HOST_URL}/register`,
     LOGIN: `${SERVER_HOST_URL}/login`,
     LOGOUT: `${SERVER_HOST_URL}/logout`,
-    USER: `${SERVER_HOST_URL}/user`
+    USER: `${SERVER_HOST_URL}/user/`,
+    USER_EDIT:`${SERVER_HOST_URL}/user/edit/`
 }
