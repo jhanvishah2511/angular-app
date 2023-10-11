@@ -12,4 +12,16 @@ export class UserService {
   getUser(){
     return this.http.get(COMMON_URL.USER);
   }
+
+  userDetails(userId:any){
+    return this.http.get(`${COMMON_URL.USER}${userId}`);
+  }
+
+  editUser(data:any,userId:any){
+    return this.http.post(`${COMMON_URL.USER_EDIT}${userId}`,data);
+  }
+
+  deleteId(userId:number){
+    return this.http.delete(`${COMMON_URL.USER}${userId}`);
+  }
 }

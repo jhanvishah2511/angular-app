@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -8,20 +9,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  constructor(public service:UserService, public router:Router){}
+  constructor(
+    public service: UserService,
+    public router: Router,
+    public toastr: ToastrService
+  ) {}
   userlist!: [];
   ngOnInit() {
     this.userList();
   }
   userList() {
-    this.service.getUser().subscribe((response:any)=>{
+    this.service.getUser().subscribe((response: any) => {
       this.userlist = response.data;
-    })
+    });
   }
 
-  edit(id:number){
-    if(id){
-      this.router.navigate([`users/edit/${id}`])
+  edit(id: number) {
+    if (id) {
+      this.router.navigate([`users/edit/${id}`]);
+    }
+  }
+
+  deleteId(id: number) {
+    if (id) {
+      this.service.deleteId(id).subscribe({
+        next: (data: any) => {
+          this.toastr.success(data.message, 'Success!');
+          this.userList();
+        },
+        error: (error: any) => {
+          console.log('sss', error);
+        },
+      });
     }
   }
 }
