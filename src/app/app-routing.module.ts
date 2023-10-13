@@ -4,6 +4,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuardService } from './auth-guard.service';
+import { TokenComponent } from './token/token.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  { path: 'verify/:email/:token', component: TokenComponent },
   {
     path: 'dashboard',
     pathMatch: 'full',

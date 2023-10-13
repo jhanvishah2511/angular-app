@@ -41,13 +41,10 @@ export class RegisterComponent {
     });
   }
   checkPassword() {
-    console.log('sss', this.signUpForm.value.password);
     if (this.signUpForm.value.cpassword !== this.signUpForm.value.password) {
       this.signUpForm.controls['cpassword'].setErrors({ passwordMatch: true });
-      console.log('this.signUpForm', this.signUpForm.controls);
     } else {
       this.signUpForm.controls['cpassword'].setErrors(null);
-      console.log('elssee', this.signUpForm.controls);
     }
   }
   Submit() {

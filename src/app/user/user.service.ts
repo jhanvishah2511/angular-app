@@ -24,4 +24,12 @@ export class UserService {
   deleteId(userId:number){
     return this.http.delete(`${COMMON_URL.USER}${userId}`);
   }
+
+  createUser(data:any){
+    return this.http.post(COMMON_URL.USER_CREATE,data);
+  }
+
+  verifyToken(token:any){
+    return this.http.post(COMMON_URL.USER_VERIFY,token);
+  }
 }

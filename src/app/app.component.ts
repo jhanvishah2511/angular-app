@@ -21,7 +21,7 @@ export class AppComponent {
       if(event instanceof NavigationEnd){
         const currentUrl = event.url;
         const firstPart = currentUrl.split('/')[1];
-        this.loggedIn = firstPart.trim() !== '' && firstPart !== 'login' && firstPart !== 'register'
+        this.loggedIn = firstPart.trim() !== '' && firstPart !== 'login' && firstPart !== 'register' && firstPart !== 'verify'
       }
     })
   }
