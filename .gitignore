@@ -44,3 +44,4 @@ Thumbs.db
 
 #server
 /server/node_modules/
+/server/constants/mail.js

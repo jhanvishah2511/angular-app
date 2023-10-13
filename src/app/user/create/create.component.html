@@ -16,4 +16,75 @@
       </button>
     </div>
   </div>
+  <form class="mt-2 bg-slate-50" [formGroup]="userCreateForm">
+    <label class="mt-2">First Name</label><br />
+    <input
+      type="text"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      formControlName="firstName"
+    /><br />
+    <div *ngIf="userCreateForm.controls['firstName'].errors && submitted">
+        <div
+          *ngIf="userCreateForm.controls['firstName'].errors['required']"
+          class="text-orange-700"
+        >
+          First Name is required Field
+        </div>
+        <div
+          *ngIf="userCreateForm.controls['firstName'].errors['minlength']"
+          class="text-orange-700"
+        >
+          First Name should have minimum 3 characters
+        </div>
+      </div>
+    <label class="mt-2">Last Name</label><br />
+    <input
+      type="text"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      formControlName="lastName"
+    /><br />
+    <div *ngIf="userCreateForm.controls['lastName'].errors && submitted">
+        <div
+          *ngIf="userCreateForm.controls['lastName'].errors['required']"
+          class="text-orange-700"
+        >
+          Last Name is required Field
+        </div>
+        <div
+          *ngIf="userCreateForm.controls['lastName'].errors['minlength']"
+          class="text-orange-700"
+        >
+          Last Name should have minimum 3 characters
+        </div>
+      </div>
+    <label class="mt-2">Email</label><br />
+    <input
+      type="email"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      formControlName="email"
+    /><br />
+    <div *ngIf="userCreateForm.controls['email'].errors && submitted">
+        <div
+          *ngIf="userCreateForm.controls['email'].errors['required']"
+          class="text-orange-700"
+        >
+          Email is required Field
+        </div>
+        <div
+          *ngIf="userCreateForm.controls['email'].errors['pattern']"
+          class="text-orange-700"
+        >
+          Email format is not Valid
+        </div>
+      </div>
+    <button
+      class="rounded-md bg-indigo-600 p-2 text-white mt-2"
+      (click)="Submit()"
+    >
+      Save
+    </button>
+  </form>
 </div>

@@ -11,6 +11,12 @@ module.exports = (sequelize, Sequelize) => {
         },
         password: {
             type: Sequelize.STRING
+        },
+        verificationToken: {
+            type: Sequelize.STRING,
+        },
+        verifyStatus: {
+            type: Sequelize.BOOLEAN,
         }
     })
     return User;
