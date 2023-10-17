@@ -32,4 +32,8 @@ export class UserService {
   verifyToken(token:any){
     return this.http.post(COMMON_URL.USER_VERIFY,token);
   }
+
+  getProfilePic(fileName:any){
+    return this.http.get(`${COMMON_URL.PROFILE_PIC}${fileName}`,{ responseType: 'blob' });
+  }
 }

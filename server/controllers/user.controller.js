@@ -6,7 +6,8 @@ const fs = require("fs");
 const util = require("util");
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
-const jwt = require("jsonwebtoken");
+const uploadFile = require("../middleware/upload");
+const path = require('path');
 exports.getUser = async (req, res) => {
   try {
     const user = await User.findAll();
@@ -37,12 +38,17 @@ exports.getUserById = async (req, res) => {
 };
 exports.userEdit = async (req, res) => {
   try {
+    await uploadFile(req, res);
+    if (req.file == undefined) {
+      return res.status(400).send({ message: "Please upload a file!" });
+    }
     const id = req.params.id;
     const user = await User.update(
       {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
+        profile_pic: req.file.filename
       },
       {
         where: {
@@ -145,7 +151,6 @@ exports.sendMail = async (data) => {
 
 exports.userVerify = async (req, res) => {
   try {
-    
     const email = req.body.email;
     const token = req.body.token;
     if (email && token) {
@@ -162,19 +167,29 @@ exports.userVerify = async (req, res) => {
             verifyStatus: 1
           },
           {
-            where:{
-              email:email
+            where: {
+              email: email
             }
           })
-          if(update){
-            res.send({ message: 'User Verified Successfully' });
-          }
+        if (update) {
+          res.send({ message: 'User Verified Successfully' });
+        }
       } else {
         res.status(400).send({ message: 'Link not found..Please try again' });
       }
     } else {
       res.status(400).send({ message: 'Not able to verify email' });
     }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+}
+
+exports.userProfilePic = async (req, res) => {
+  try {
+    const imageName = req.params.filename;
+    const imagePath = path.join(directoryPath + '/uploads', imageName);
+    res.sendFile(imagePath);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

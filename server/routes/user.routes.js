@@ -26,7 +26,10 @@ module.exports = function (app) {
     ], function (req, res) {
         controller.userCreate(req, res)
     })
-    app.post('/user/verify/', function(req, res){
+    app.post('/user/verify/', function (req, res) {
         controller.userVerify(req, res)
+    })
+    app.get('/user/profile-pic/:filename', function (req, res) {
+        controller.userProfilePic(req, res)
     })
 }
