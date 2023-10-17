@@ -19,6 +19,7 @@ export class CreateComponent {
   userCreateForm!: FormGroup;
   rules: any = REGISTRATION_RULES;
   submitted: boolean = false;
+  selectedFiles: any;
   constructor(
     public fb: FormBuilder,
     public userService: UserService,
@@ -47,7 +48,9 @@ export class CreateComponent {
       password: new FormControl(''),
     });
   }
-
+  selectFile(event:any){
+    this.selectedFiles = event.target.files;
+  }
   Submit() {
     this.submitted = true;
     const password = Math.random().toString(36).slice(-8);

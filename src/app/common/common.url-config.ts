@@ -7,5 +7,6 @@ export const COMMON_URL = {
     USER: `${SERVER_HOST_URL}/user/`,
     USER_EDIT:`${SERVER_HOST_URL}/user/edit/`,
     USER_CREATE:`${SERVER_HOST_URL}/user/create/`,
-    USER_VERIFY:`${SERVER_HOST_URL}/user/verify/`
+    USER_VERIFY:`${SERVER_HOST_URL}/user/verify/`,
+    PROFILE_PIC:`${SERVER_HOST_URL}/user/profile-pic/`,
 }

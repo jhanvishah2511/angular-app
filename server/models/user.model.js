@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         verifyStatus: {
             type: Sequelize.BOOLEAN,
+        },
+        profile_pic:{
+            type: Sequelize.STRING,
         }
     })
     return User;
