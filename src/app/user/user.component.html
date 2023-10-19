@@ -23,6 +23,7 @@
           <th scope="col" class="px-6 py-3">Index</th>
           <th>Name</th>
           <th>Email</th>
+          <th>Image</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
@@ -42,11 +43,16 @@
             {{ user["lastName"] | titlecase }}
           </td>
           <td>{{ user["email"] }}</td>
+          <td *ngIf="user['profile_pic']"><img [src]="user['profile_pic']" class="border-4 border-white-400" height="80" width="80"></td>
+          <td *ngIf="!user['profile_pic']"></td>
           <td *ngIf="user['verifyStatus'] === true" class=""> Active</td>
           <td *ngIf="user['verifyStatus'] !== true" class=""> Inactive</td>
           <td>
             <button class="rounded-full bg-cyan-600 p-2 text-white mr-1" (click)="edit(user['id'])">
               Edit
+            </button>
+            <button class="rounded-full bg-lime-600 p-2 text-white mr-1" (click)="uploads(user['id'])">
+              Uploads
             </button>
             <button class="rounded-full bg-red-600 p-2 text-white" (click)="deleteId(user['id'])">
               Delete

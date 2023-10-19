@@ -97,7 +97,6 @@ export class EditComponent {
     this.submitted = true;
     if (this.userEditForm.status === 'VALID') {
       const formData = new FormData();
-      console.log('frmm', this.userEditForm.value);
       formData.append('email', this.userEditForm.value.email);
       formData.append('firstName', this.userEditForm.value.firstName);
       formData.append('lastName', this.userEditForm.value.lastName);

@@ -1,0 +1,35 @@
+<div class="ml-80 mt-4">
+  <div class="grid grid-cols-2">
+    <div>
+      <h3
+        class="mb-4 text-4xl font-medium leading-none tracking-tight text-gray-900"
+      >
+        All Your Uploads Are Here
+      </h3>
+    </div>
+    <div>
+      <button
+        routerLink="/users"
+        class="rounded-full bg-indigo-600 p-2 text-white float-right mr-2"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+  <label class="mt-2">Upload Files</label><br />
+   <input
+      type="file"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      accept="jpeg,jpg,png"
+      name="upload_files"
+      multiple
+      (change)="multiSelect($event)"
+      /><br />
+      <button
+      class="rounded-md bg-indigo-600 p-2 text-white mt-2"
+      (click)="Submit()"
+    >
+      Upload
+    </button>
+</div>

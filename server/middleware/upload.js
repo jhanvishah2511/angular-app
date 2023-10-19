@@ -4,13 +4,12 @@ const maxSize = 2 * 1024 * 1024;
 const __basedir = __dirname;
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads');
+        cb(null, 'uploads/profile');
     },
     filename: (req, file, cb) => {
-        cb(null, file?.originalname);
+        cb(null, +Date.now() +"_"+ file?.originalname);
     },
 });
-
 let uploadFile = multer({
     storage: storage,
     limits: { fileSize: maxSize },

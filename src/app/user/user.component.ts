@@ -21,6 +21,19 @@ export class UserComponent {
   userList() {
     this.service.getUser().subscribe((response: any) => {
       this.userlist = response.data;
+      this.userlist.forEach((element :any) => {
+        if(element.profile_pic){
+
+          const fileName = element.profile_pic;
+          this.service.getProfilePic(fileName).subscribe((res: any) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              element.profile_pic = reader.result as string
+            };
+            reader.readAsDataURL(res);
+          })
+        }
+      });
     });
   }
 
@@ -41,6 +54,12 @@ export class UserComponent {
           console.log('sss', error);
         },
       });
+    }
+  }
+
+  uploads(id: number){
+    if(id){
+      this.router.navigate([`users/uploads/${id}`])
     }
   }
 }
