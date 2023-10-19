@@ -1,5 +1,6 @@
 const db = require("../models");
 const User = db.user;
+const UserUploads = db.user_uploads;
 const bcrypt = require("bcryptjs");
 const mailConfigure = require("../constants/mail");
 const fs = require("fs");
@@ -7,6 +8,7 @@ const util = require("util");
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
 const uploadFile = require("../middleware/upload");
+const multiUpload = require("../middleware/multiUpload");
 const path = require('path');
 exports.getUser = async (req, res) => {
   try {
@@ -39,23 +41,36 @@ exports.getUserById = async (req, res) => {
 exports.userEdit = async (req, res) => {
   try {
     await uploadFile(req, res);
-    if (req.file == undefined) {
-      return res.status(400).send({ message: "Please upload a file!" });
-    }
+    let user;
     const id = req.params.id;
-    const user = await User.update(
-      {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        profile_pic: req.file.filename
-      },
-      {
-        where: {
-          id: id,
+    if (req.file === undefined) {
+      user = await User.update(
+        {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
         },
-      }
-    );
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+    } else {
+      user = await User.update(
+        {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          profile_pic: req.file.filename
+        },
+        {
+          where: {
+            id: id,
+          },
+        }
+      );
+    }
     if (user) {
       res.send({ message: "User Updated Successfully" });
     } else {
@@ -188,8 +203,34 @@ exports.userVerify = async (req, res) => {
 exports.userProfilePic = async (req, res) => {
   try {
     const imageName = req.params.filename;
-    const imagePath = path.join(directoryPath + '/uploads', imageName);
+    const imagePath = path.join(directoryPath + '/uploads/profile', imageName);
     res.sendFile(imagePath);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+}
+
+exports.multiUpload = async (req, res) => {
+  try {
+    await multiUpload(req, res);
+    const uploadLength = req.files.length;
+    let i = 0;
+    let send;
+    req.files.forEach(file => {
+      const uploads = UserUploads.create({
+        document_name: file.filename,
+        user_id: req.params.id
+      })
+      i = i + 1;
+      if (req.files.length === i) {
+        send = true;
+      }
+    });
+    if(send === true){
+      res.send({ message: 'Files Uploaded Successfully' });
+    }else{
+      res.status(500).send({ message: 'Files Not Uploaded' });
+    }
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

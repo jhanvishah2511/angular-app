@@ -36,4 +36,8 @@ export class UserService {
   getProfilePic(fileName:any){
     return this.http.get(`${COMMON_URL.PROFILE_PIC}${fileName}`,{ responseType: 'blob' });
   }
+
+  uploadMultiple(data:any, id:number){
+    return this.http.post(`${COMMON_URL.MULTI_UPLOAD}${id}`,data);
+  }
 }

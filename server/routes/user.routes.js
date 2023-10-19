@@ -32,4 +32,7 @@ module.exports = function (app) {
     app.get('/user/profile-pic/:filename', function (req, res) {
         controller.userProfilePic(req, res)
     })
+    app.post('/user/multi-upload/:id', function (req, res) {
+        controller.multiUpload(req, res)
+    })
 }

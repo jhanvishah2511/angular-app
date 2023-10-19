@@ -5,13 +5,15 @@ import { UserRoutingModule } from './user-routing.module';
 import { EditComponent } from './edit/edit.component';
 import { CreateComponent } from './create/create.component';
 import { TokenComponent } from '../token/token.component';
+import { UploadsComponent } from './uploads/uploads.component';
 
 
 @NgModule({
   declarations: [
     EditComponent,
     CreateComponent,
-    TokenComponent
+    TokenComponent,
+    UploadsComponent
   ],
   imports: [
     CommonModule,
