@@ -9,5 +9,7 @@ export const COMMON_URL = {
     USER_CREATE:`${SERVER_HOST_URL}/user/create/`,
     USER_VERIFY:`${SERVER_HOST_URL}/user/verify/`,
     PROFILE_PIC:`${SERVER_HOST_URL}/user/profile-pic/`,
-    MULTI_UPLOAD: `${SERVER_HOST_URL}/user/multi-upload/`
+    MULTI_UPLOAD: `${SERVER_HOST_URL}/user/multi-upload/`,
+    GET_ALL_UPLOADS: `${SERVER_HOST_URL}/user/get-all-uploads/`,
+    UPLOAD_DOCS:`${SERVER_HOST_URL}/user/get-all-uploads-docs/`
 }

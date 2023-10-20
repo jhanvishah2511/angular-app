@@ -210,6 +210,16 @@ exports.userProfilePic = async (req, res) => {
   }
 }
 
+exports.getUploadDocFile = async (req, res) => {
+  try {
+    const imageName = req.params.filename;
+    const imagePath = path.join(directoryPath + '/uploads/documents', imageName);
+    res.sendFile(imagePath);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+}
+
 exports.multiUpload = async (req, res) => {
   try {
     await multiUpload(req, res);
@@ -226,12 +236,26 @@ exports.multiUpload = async (req, res) => {
         send = true;
       }
     });
-    if(send === true){
+    if (send === true) {
       res.send({ message: 'Files Uploaded Successfully' });
-    }else{
+    } else {
       res.status(500).send({ message: 'Files Not Uploaded' });
     }
   } catch (error) {
     res.status(500).send({ message: error.message });
+  }
+}
+
+exports.getAllUploads = async (req, res) => {
+  const userId = req.params.id;
+  const uploads = await UserUploads.findAll({
+    where: {
+      user_id: userId
+    }
+  })
+  if (uploads) {
+    res.send({ data: uploads });
+  } else {
+    res.send({ data: [] });
   }
 }

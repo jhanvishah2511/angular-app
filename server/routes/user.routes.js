@@ -35,4 +35,12 @@ module.exports = function (app) {
     app.post('/user/multi-upload/:id', function (req, res) {
         controller.multiUpload(req, res)
     })
+
+    app.get('/user/get-all-uploads/:id', function(req,res){
+        controller.getAllUploads(req, res)
+    })
+
+    app.get('/user/get-all-uploads-docs/:filename', function(req,res){
+        controller.getUploadDocFile(req, res)
+    })
 }
