@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 export class UploadsComponent {
   userId: any;
   multiSelectedFiles: any;
+  previews: string[] = [];
+  uploads: string[] = [];
   constructor(
     public router: Router,
     public userService: UserService,
@@ -26,13 +28,50 @@ export class UploadsComponent {
         userId = currentUrl.split('/').pop();
         if (uploads) {
           this.userId = userId;
+          this.getUploads();
         }
       }
     });
   }
 
+  getUploads() {
+    this.userService.getUploads(this.userId).subscribe({
+      next: (data: any) => {
+        if (data && data.data.length > 0) {
+          const totalFiles = data.data;
+          totalFiles.forEach((element: any) => {
+            const fileName = element.document_name;
+            if (fileName) {
+              this.userService
+                .getUploadedDocs(fileName)
+                .subscribe((res: any) => {
+                  const reader = new FileReader();
+                  reader.onload = (e: any) => {
+                    this.uploads.push(e.target.result);
+                  };
+                  reader.readAsDataURL(res);
+                });
+            }
+          });
+        }
+      },
+      error: (err: any) => {},
+    });
+  }
+
   multiSelect(event: any) {
     this.multiSelectedFiles = event.target.files;
+    this.previews = [];
+    if (this.multiSelectedFiles && this.multiSelectedFiles.length > 0) {
+      const totalFiles = this.multiSelectedFiles.length;
+      for (let index = 0; index < totalFiles; index++) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.multiSelectedFiles[index]);
+      }
+    }
   }
 
   Submit() {

@@ -40,4 +40,12 @@ export class UserService {
   uploadMultiple(data:any, id:number){
     return this.http.post(`${COMMON_URL.MULTI_UPLOAD}${id}`,data);
   }
+
+  getUploads(userId:number){
+    return this.http.get(`${COMMON_URL.GET_ALL_UPLOADS}${userId}`);
+  }
+
+  getUploadedDocs(fileName:any){
+    return this.http.get(`${COMMON_URL.UPLOAD_DOCS}${fileName}`,{ responseType: 'blob' });
+  }
 }

@@ -27,8 +27,8 @@ export class UserComponent {
           const fileName = element.profile_pic;
           this.service.getProfilePic(fileName).subscribe((res: any) => {
             const reader = new FileReader();
-            reader.onload = () => {
-              element.profile_pic = reader.result as string
+            reader.onload = (e: any) => {
+              element.profile_pic = e.target.result
             };
             reader.readAsDataURL(res);
           })
