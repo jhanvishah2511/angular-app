@@ -11,5 +11,6 @@ export const COMMON_URL = {
     PROFILE_PIC:`${SERVER_HOST_URL}/user/profile-pic/`,
     MULTI_UPLOAD: `${SERVER_HOST_URL}/user/multi-upload/`,
     GET_ALL_UPLOADS: `${SERVER_HOST_URL}/user/get-all-uploads/`,
-    UPLOAD_DOCS:`${SERVER_HOST_URL}/user/get-all-uploads-docs/`
+    UPLOAD_DOCS:`${SERVER_HOST_URL}/user/get-all-uploads-docs/`,
+    REMOVE_UPLOAD: `${SERVER_HOST_URL}/user/remove-uploads/`
 }

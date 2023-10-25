@@ -103,6 +103,28 @@ exports.userDelete = async (req, res) => {
   }
 };
 
+exports.removeUpload = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (id) {
+      const uploads = await UserUploads.destroy({
+        where: {
+          id: id,
+        },
+      });
+      if (uploads) {
+         res.send({ message: "Document removed Successfully" });
+      } else {
+        res.status(400).send({ message: "Document Not Updated" });
+      }
+    } else {
+      res.status(400).send({ message: "Document Not Found" });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+}
+
 exports.userCreate = async (req, res) => {
   try {
     const user = await User.create({

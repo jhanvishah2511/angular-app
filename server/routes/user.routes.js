@@ -36,11 +36,15 @@ module.exports = function (app) {
         controller.multiUpload(req, res)
     })
 
-    app.get('/user/get-all-uploads/:id', function(req,res){
+    app.get('/user/get-all-uploads/:id', function (req, res) {
         controller.getAllUploads(req, res)
     })
 
-    app.get('/user/get-all-uploads-docs/:filename', function(req,res){
+    app.get('/user/get-all-uploads-docs/:filename', function (req, res) {
         controller.getUploadDocFile(req, res)
+    })
+
+    app.delete('/user/remove-uploads/:id', function (req, res) {
+        controller.removeUpload(req, res)
     })
 }

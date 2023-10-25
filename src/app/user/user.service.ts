@@ -48,4 +48,8 @@ export class UserService {
   getUploadedDocs(fileName:any){
     return this.http.get(`${COMMON_URL.UPLOAD_DOCS}${fileName}`,{ responseType: 'blob' });
   }
+
+  removeImage(userId:number){
+    return this.http.delete(`${COMMON_URL.REMOVE_UPLOAD}${userId}`);
+  }
 }
