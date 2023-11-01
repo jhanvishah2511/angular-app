@@ -12,7 +12,10 @@ export class UploadsComponent {
   userId: any;
   multiSelectedFiles: any;
   previews: string[] = [];
-  uploads: string[] = [];
+  uploads: any;
+  openModal: boolean = false;
+  modalImage: any;
+  deleteId: any;
   constructor(
     public router: Router,
     public userService: UserService,
@@ -35,6 +38,7 @@ export class UploadsComponent {
   }
 
   getUploads() {
+    this.uploads = [];
     this.userService.getUploads(this.userId).subscribe({
       next: (data: any) => {
         if (data && data.data.length > 0) {
@@ -47,7 +51,11 @@ export class UploadsComponent {
                 .subscribe((res: any) => {
                   const reader = new FileReader();
                   reader.onload = (e: any) => {
-                    this.uploads.push(e.target.result);
+                    const data = {
+                      id: element.id,
+                      document: e.target.result,
+                    };
+                    this.uploads.push(data);
                   };
                   reader.readAsDataURL(res);
                 });
@@ -95,5 +103,31 @@ export class UploadsComponent {
     } else {
       this.toastr.error('Please select atleast one file', 'Error!');
     }
+  }
+
+  deleteImage(image: any) {
+    this.openModal = true;
+    this.modalImage = image.document;
+    this.deleteId = image.id;
+  }
+
+  cancelPopup() {
+    this.openModal = false;
+    this.deleteId = '';
+    this.modalImage = '';
+  }
+
+  deleteUpload() {
+    this.userService.removeImage(this.deleteId).subscribe({
+      next: (data: any) => {
+        this.toastr.success(data.message, 'Success!');
+        this.openModal = false;
+        this.deleteId = '';
+        this.modalImage = '';
+        this.getUploads();
+      },
+      error: (err: any) => {},
+    });
+    console.log('ssss', this.deleteId);
   }
 }

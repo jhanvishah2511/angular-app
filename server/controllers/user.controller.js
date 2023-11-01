@@ -7,7 +7,7 @@ const fs = require("fs");
 const util = require("util");
 const nodemailer = require("nodemailer");
 const handlebars = require("handlebars");
-const uploadFile = require("../middleware/upload");
+const createMulterMiddleware = require("../middleware/upload");
 const multiUpload = require("../middleware/multiUpload");
 const path = require('path');
 exports.getUser = async (req, res) => {
@@ -40,6 +40,10 @@ exports.getUserById = async (req, res) => {
 };
 exports.userEdit = async (req, res) => {
   try {
+    const fieldName = "profile_pic"; // Specify the field name dynamically
+    const uploadFile = createMulterMiddleware(fieldName);
+
+    // Call the dynamic Multer middleware
     await uploadFile(req, res);
     let user;
     const id = req.params.id;
@@ -102,6 +106,28 @@ exports.userDelete = async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 };
+
+exports.removeUpload = async (req, res) => {
+  try {
+    const id = req.params.id;
+    if (id) {
+      const uploads = await UserUploads.destroy({
+        where: {
+          id: id,
+        },
+      });
+      if (uploads) {
+         res.send({ message: "Document removed Successfully" });
+      } else {
+        res.status(400).send({ message: "Document Not Updated" });
+      }
+    } else {
+      res.status(400).send({ message: "Document Not Found" });
+    }
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+}
 
 exports.userCreate = async (req, res) => {
   try {

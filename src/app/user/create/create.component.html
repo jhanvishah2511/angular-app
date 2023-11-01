@@ -25,19 +25,19 @@
       formControlName="firstName"
     /><br />
     <div *ngIf="userCreateForm.controls['firstName'].errors && submitted">
-        <div
-          *ngIf="userCreateForm.controls['firstName'].errors['required']"
-          class="text-orange-700"
-        >
-          First Name is required Field
-        </div>
-        <div
-          *ngIf="userCreateForm.controls['firstName'].errors['minlength']"
-          class="text-orange-700"
-        >
-          First Name should have minimum 3 characters
-        </div>
+      <div
+        *ngIf="userCreateForm.controls['firstName'].errors['required']"
+        class="text-orange-700"
+      >
+        First Name is required Field
       </div>
+      <div
+        *ngIf="userCreateForm.controls['firstName'].errors['minlength']"
+        class="text-orange-700"
+      >
+        First Name should have minimum 3 characters
+      </div>
+    </div>
     <label class="mt-2">Last Name</label><br />
     <input
       type="text"
@@ -46,19 +46,19 @@
       formControlName="lastName"
     /><br />
     <div *ngIf="userCreateForm.controls['lastName'].errors && submitted">
-        <div
-          *ngIf="userCreateForm.controls['lastName'].errors['required']"
-          class="text-orange-700"
-        >
-          Last Name is required Field
-        </div>
-        <div
-          *ngIf="userCreateForm.controls['lastName'].errors['minlength']"
-          class="text-orange-700"
-        >
-          Last Name should have minimum 3 characters
-        </div>
+      <div
+        *ngIf="userCreateForm.controls['lastName'].errors['required']"
+        class="text-orange-700"
+      >
+        Last Name is required Field
       </div>
+      <div
+        *ngIf="userCreateForm.controls['lastName'].errors['minlength']"
+        class="text-orange-700"
+      >
+        Last Name should have minimum 3 characters
+      </div>
+    </div>
     <label class="mt-2">Email</label><br />
     <input
       type="email"
@@ -67,20 +67,20 @@
       formControlName="email"
     /><br />
     <div *ngIf="userCreateForm.controls['email'].errors && submitted">
-        <div
-          *ngIf="userCreateForm.controls['email'].errors['required']"
-          class="text-orange-700"
-        >
-          Email is required Field
-        </div>
-        <div
-          *ngIf="userCreateForm.controls['email'].errors['pattern']"
-          class="text-orange-700"
-        >
-          Email format is not Valid
-        </div>
+      <div
+        *ngIf="userCreateForm.controls['email'].errors['required']"
+        class="text-orange-700"
+      >
+        Email is required Field
       </div>
-      <label class="mt-2">Profile pic</label><br />
+      <div
+        *ngIf="userCreateForm.controls['email'].errors['pattern']"
+        class="text-orange-700"
+      >
+        Email format is not Valid
+      </div>
+    </div>
+    <label class="mt-2">Profile pic</label><br />
     <input
       type="file"
       placeholder=""
