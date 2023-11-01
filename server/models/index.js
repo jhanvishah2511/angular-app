@@ -25,5 +25,5 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.user_uploads = require("../models/user_uploads.model.js")(sequelize, Sequelize);
-
+db.category = require('../models/category.model.js')(sequelize, Sequelize)
 module.exports = db;

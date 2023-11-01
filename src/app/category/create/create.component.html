@@ -1,0 +1,68 @@
+<div class="ml-80 mt-4">
+  <div class="grid grid-cols-2">
+    <div>
+      <h3
+        class="mb-4 text-4xl font-medium leading-none tracking-tight text-gray-900"
+      >
+        Create Categories
+      </h3>
+    </div>
+    <div>
+      <button
+        routerLink="/categories"
+        class="rounded-full bg-indigo-600 p-2 text-white float-right mr-2"
+      >
+        Back
+      </button>
+    </div>
+  </div>
+  <form class="mt-2 bg-slate-50" [formGroup]="categoryCreateForm">
+    <label class="mt-2">Category Name</label><br />
+    <input
+      type="text"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      formControlName="categoryName"
+    /><br />
+    <div
+      *ngIf="categoryCreateForm.controls['categoryName'].errors && submitted"
+    >
+      <div
+        *ngIf="categoryCreateForm.controls['categoryName'].errors['required']"
+        class="text-orange-700"
+      >
+        Category Name is required Field
+      </div>
+      <div
+        *ngIf="categoryCreateForm.controls['categoryName'].errors['minlength']"
+        class="text-orange-700"
+      >
+        Category Name should have minimum 3 characters
+      </div>
+    </div>
+    <label class="mt-2">Category Image</label><br />
+    <input
+      type="file"
+      placeholder=""
+      class="bg-white border-2 border-black mt-2 rounded-md p-1"
+      accept="jpeg,jpg,png"
+      name="categoryImage"
+      (change)="selectFile($event)"
+    /><br />
+    <div *ngIf="url">
+      <label  class="mt-2">Profile pic preview</label><br />
+      <img [src]="url" width="150" height="100">
+    </div>
+    <label class="mt-2">Status</label><br />
+    <select class="bg-white border-2 border-black mt-2 rounded-md p-1" formControlName="categoryStatus">
+      <option value="active">Active</option>
+      <option value="in-active">In Active</option></select
+    ><br />
+    <button
+      class="rounded-md bg-indigo-600 p-2 text-white mt-2"
+      (click)="submit()"
+    >
+      Save
+    </button>
+  </form>
+</div>

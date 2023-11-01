@@ -12,5 +12,6 @@ export const COMMON_URL = {
     MULTI_UPLOAD: `${SERVER_HOST_URL}/user/multi-upload/`,
     GET_ALL_UPLOADS: `${SERVER_HOST_URL}/user/get-all-uploads/`,
     UPLOAD_DOCS:`${SERVER_HOST_URL}/user/get-all-uploads-docs/`,
-    REMOVE_UPLOAD: `${SERVER_HOST_URL}/user/remove-uploads/`
+    REMOVE_UPLOAD: `${SERVER_HOST_URL}/user/remove-uploads/`,
+    CATEGORY_CREATE:`${SERVER_HOST_URL}/category/create/`,
 }
