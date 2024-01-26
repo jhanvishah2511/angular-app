@@ -1,0 +1,34 @@
+{
+  "name": {
+    "type": "text",
+    "required": true,
+    "value": "fffff"
+  },
+  "email": {
+    "type": "email",
+    "required": true,
+    "value": "ffff@gmail.com"
+  },
+  "mobile": {
+    "type": "number",
+    "required": false,
+    "value": 98965555
+  },
+  "address": [
+    {
+      "street": "dfdf",
+      "city": "dfdf",
+      "zip": "2454"
+    },
+    {
+      "street": "dfdfdf",
+      "city": "fdfdf",
+      "zip": "555"
+    },
+    {
+      "street": "sssff",
+      "city": "777",
+      "zip": "54"
+    }
+  ]
+}

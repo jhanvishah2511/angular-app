@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -14,6 +15,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 import { UserComponent } from './user/user.component';
 import { CategoryComponent } from './category/category.component';
+import { FormMultiComponent } from './form-multi/form-multi.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { CategoryComponent } from './category/category.component';
     HeaderComponent,
     UserComponent,
     CategoryComponent,
+    FormMultiComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { CategoryComponent } from './category/category.component';
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
+    DragDropModule
   ],
   providers: [HttpClient],
   bootstrap: [AppComponent],

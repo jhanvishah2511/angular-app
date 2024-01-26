@@ -14,4 +14,6 @@ export const COMMON_URL = {
     UPLOAD_DOCS:`${SERVER_HOST_URL}/user/get-all-uploads-docs/`,
     REMOVE_UPLOAD: `${SERVER_HOST_URL}/user/remove-uploads/`,
     CATEGORY_CREATE:`${SERVER_HOST_URL}/category/create/`,
+    CATEGORY:`${SERVER_HOST_URL}/category/`,
+    CATEGORY_IMAGE: `${SERVER_HOST_URL}/category/image/`
 }

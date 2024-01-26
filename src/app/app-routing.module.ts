@@ -8,6 +8,11 @@ import { TokenComponent } from './token/token.component';
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'users',
+  },
+  {
     path: 'register',
     component: RegisterComponent,
   },
@@ -29,7 +34,14 @@ const routes: Routes = [
   {
     path: 'categories',
     canActivate: [AuthGuardService],
-    loadChildren: () => import('./category/category.module').then((m) => m.CategoryModule),
+    loadChildren: () =>
+      import('./category/category.module').then((m) => m.CategoryModule),
+  },
+  {
+    path: 'form-multi',
+    canActivate: [AuthGuardService],
+    loadChildren: () =>
+      import('./form-multi/form-multi.module').then((m) => m.FormMultiModule),
   },
 ];
 

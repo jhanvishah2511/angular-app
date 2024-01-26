@@ -10,4 +10,12 @@ module.exports = function (app) {
     app.post('/category/create/', function (req, res) {
         controller.categoryCreate(req, res)
     })
+
+    app.get('/category/', function (req, res) {
+        controller.getCategory(req, res)
+    })
+
+    app.get('/category/image/:filename', function (req, res) {
+        controller.getCategoryImage(req, res)
+    })
 }
