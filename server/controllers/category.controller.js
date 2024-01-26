@@ -2,6 +2,7 @@
 const createMulterMiddleware = require("../middleware/upload");
 const db = require("../models");
 const Category = db.category;
+const path = require('path');
 exports.categoryCreate = async (req, res) => {
     try {
         const fieldName = "categoryImage"; // Specify the field name dynamically
@@ -23,6 +24,29 @@ exports.categoryCreate = async (req, res) => {
                 res.status(400).send({ message: 'Something went wrong' });
             }
         }
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+exports.getCategory = async (req, res) => {
+    try {
+        const category = await Category.findAll();
+        if (category && category.length) {
+            res.send({ data: category });
+        } else {
+            res.status(204).send({ message: 'Not Data' });
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+exports.getCategoryImage = async (req, res) => {
+    try {
+        const imageName = req.params.filename;
+        const imagePath = path.join(directoryPath + '/uploads/categoryImage', imageName);
+        res.sendFile(imagePath);
     } catch (error) {
         res.status(500).send({ message: error.message });
     }

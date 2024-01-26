@@ -1,0 +1,12 @@
+tr[draggable] {
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  tr[draggable]:hover {
+    background-color: #f2f2f2;
+  }
+  
+  tr[draggable].dragging {
+    opacity: 0.5;
+  }

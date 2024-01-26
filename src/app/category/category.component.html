@@ -28,16 +28,39 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="bg-white border-b">
+        <tr
+          class="bg-white border-b"
+          *ngFor="let catgeory of categories; let i = index"
+          [attr.draggable]="true"
+          (dragstart)="onDragStart(i)"
+          (dragover)="onDragOver($event, i)"
+          (dragend)="onDragEnd()"
+        >
           <td
             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
           >
-            1
+            {{ i + 1 }}
           </td>
-          <td>test</td>
-          <td>test</td>
-          <td>test</td>
-          <td>test</td>
+          <td>{{ catgeory.categoryName }}</td>
+          <td *ngIf="catgeory.categoryImage">
+            <img
+              [src]="catgeory.categoryImage"
+              class="border-4 border-white-400"
+              height="80"
+              width="80"
+            />
+          </td>
+          <td *ngIf="!catgeory.categoryImage"></td>
+          <td *ngIf="catgeory.categoryStatus === true">Active</td>
+          <td *ngIf="catgeory.categoryStatus === false">In-Active</td>
+          <td>
+            <button class="rounded-full bg-cyan-600 p-2 text-white mr-1">
+              Edit
+            </button>
+            <button class="rounded-full bg-red-600 p-2 text-white">
+              Delete
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
